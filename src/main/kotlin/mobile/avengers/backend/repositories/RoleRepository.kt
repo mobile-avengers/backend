@@ -1,8 +1,8 @@
 package mobile.avengers.backend.repositories
 
+import mobile.avengers.backend.entities.Role
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
-import javax.management.relation.Role
 
 @Repository
 interface RoleRepository : JpaRepository<Role, Long> {

@@ -32,5 +32,4 @@ data class OrderProduct(
     @JoinColumn(name = "order_id")
     val order: Order
 
-
 )
