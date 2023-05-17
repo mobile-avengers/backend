@@ -11,7 +11,11 @@ class ProductController (
 ) {
 
     @GetMapping("/products/getAll")
-    fun getAllUsers(): List<Product> {
+    fun getAllProducts(): List<Product> {
         return productService.getAllProducts()
     }
+
+
+
+
 }

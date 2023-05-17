@@ -15,10 +15,10 @@ import lombok.Setter
 data class Cart(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    val id: Long?,
 
     @Column(name = "price")
-    var price: Float,
+    var price: Float?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
