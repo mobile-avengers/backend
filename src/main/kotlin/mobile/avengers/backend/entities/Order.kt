@@ -19,16 +19,16 @@ data class Order(
     val id: Long = 0,
 
     @Column(name = "condition")
-    val condition: String,
+    var condition: String,
 
     @Column(name = "create_date")
-    val createDate: Timestamp,
+    var createDate: Timestamp,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    val user: User,
+    var user: User,
 
     @OneToMany(mappedBy = "order")
-    val productsInOrder: MutableList<OrderProduct> = mutableListOf()
+    var productsInOrder: MutableList<OrderProduct> = mutableListOf()
 
 )
