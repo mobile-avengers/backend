@@ -18,6 +18,6 @@ data class ProductType(
     val id: Long = 0,
 
     @Column(name = "type")
-    val type: String
+    var type: String
 
 )

@@ -18,13 +18,13 @@ data class User(
     val id: Long = 0,
 
     @Column(name = "mail")
-    val mail: String,
+    var mail: String,
 
     @Column(name = "password")
-    val password: String,
+    var password: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
-    val role: Role
+    var role: Role
 
 )

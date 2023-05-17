@@ -19,17 +19,17 @@ data class OrderProduct(
     val id: Long = 0,
 
     @Column(name = "condition")
-    val condition: String,
+    var condition: String,
 
     @Column(name = "price")
-    val price: Float,
+    var price: Float,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    val product: Product,
+    var product: Product,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    val order: Order
+    var order: Order
 
 )

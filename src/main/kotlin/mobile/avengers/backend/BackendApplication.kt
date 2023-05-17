@@ -9,19 +9,15 @@ import org.springframework.stereotype.Component
 
 @SpringBootApplication
 @EnableConfigurationProperties
-class BackendApplication {}
-
-fun main(args: Array<String>) {
-    SpringApplication.run(BackendApplication::class.java, *args)
-
-}
-
-@Component
-class Main : CommandLineRunner {
+class BackendApplication : CommandLineRunner {
     @Value("\${server.port}")
     lateinit var port: String
 
     override fun run(vararg args: String) {
         println("Server started at $port port")
     }
+}
+
+fun main(args: Array<String>) {
+    SpringApplication.run(BackendApplication::class.java, *args)
 }

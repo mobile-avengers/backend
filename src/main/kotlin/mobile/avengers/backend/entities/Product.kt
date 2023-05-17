@@ -18,19 +18,19 @@ data class Product(
     val id: Long = 0,
 
     @Column(name = "link")
-    val link: String,
+    var link: String,
 
     @Column(name = "size")
-    val size: String,
+    var size: String,
 
     @Column(name = "color")
-    val color: String,
+    var color: String,
 
     @Column(name = "description")
-    val description: String,
+    var description: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_type_id")
-    val productType: ProductType
+    var productType: ProductType
 
 )

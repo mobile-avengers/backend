@@ -18,6 +18,6 @@ data class Role(
     val id: Long = 0,
 
     @Column(name = "role")
-    val role: String
+    var role: String
 
 )
