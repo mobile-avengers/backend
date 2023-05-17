@@ -1,4 +1,4 @@
 # Backend
 
 ## API
-Ping: http://localhost:10101/ping
+Swagger API: http://localhost:10101/swagger-ui.html
