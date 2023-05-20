@@ -1,5 +1,6 @@
 package mobile.avengers.backend.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import lombok.AllArgsConstructor
 import lombok.Getter
@@ -25,6 +26,9 @@ data class User(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
-    var role: Role
+    var role: Role,
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    var products: MutableList<Product>
 )

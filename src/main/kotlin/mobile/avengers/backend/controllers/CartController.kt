@@ -1,8 +1,7 @@
 package mobile.avengers.backend.controllers
 
-import mobile.avengers.backend.entities.Cart
 import mobile.avengers.backend.entities.Product
-import mobile.avengers.backend.services.CartService
+import mobile.avengers.backend.services.ProductService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -13,12 +12,11 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class CartController (
-    private val cartService: CartService
+    private val productService: ProductService
 ) {
-
     @GetMapping("/api/v1/cart")
-    fun getUserCarts(userId: Long): List<Cart> {
-        return cartService.getUserCarts(userId)
+    fun getUserProductsInCart(@RequestParam userId: Long): List<Product> {
+        return productService.getUserProductsInCart(userId)
     }
 
     @PostMapping("/api/v1/cart")
@@ -26,7 +24,6 @@ class CartController (
         @RequestBody product: Product,
         @RequestParam userId: Long
     ) : ResponseEntity<Product> {
-        return cartService.addProduct(product, userId);
+        return productService.addProductToCart(product, userId);
     }
-
 }

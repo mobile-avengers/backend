@@ -9,13 +9,8 @@ import org.springframework.web.bind.annotation.RestController
 class ProductController (
     private val productService: ProductService
 ) {
-
     @GetMapping("/products/getAll")
     fun getAllProducts(): List<Product> {
         return productService.getAllProducts()
     }
-
-
-
-
 }

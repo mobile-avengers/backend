@@ -1,5 +1,6 @@
 package mobile.avengers.backend.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import lombok.AllArgsConstructor
 import lombok.Getter
@@ -34,6 +35,13 @@ data class Product(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_type_id")
-    var productType: ProductType
+    var productType: ProductType,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    var user: User,
+
+    @JsonIgnore
+    @Column(name = "in_order")
+    var inOrder: Boolean = false
 )
