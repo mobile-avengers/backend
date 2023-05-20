@@ -1,7 +1,7 @@
 package mobile.avengers.backend.controllers
 
 import mobile.avengers.backend.entities.Order
-import mobile.avengers.backend.entities.OrderProduct
+import mobile.avengers.backend.entities.Product
 import mobile.avengers.backend.models.CreateOrderRequest
 import mobile.avengers.backend.services.OrderService
 import org.springframework.web.bind.annotation.*
@@ -16,7 +16,7 @@ class OrderController (
     }
 
     @GetMapping("/api/v1/productsFromOrder")
-    fun getProductsFromOrder(@RequestParam orderId: Long) : List<OrderProduct> {
+    fun getProductsFromOrder(@RequestParam orderId: Long) : List<Product> {
         return orderService.getProductsFromOrder(orderId)
     }
 

@@ -19,5 +19,4 @@ data class ProductType(
 
     @Column(name = "type")
     var type: String
-
 )

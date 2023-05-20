@@ -19,5 +19,4 @@ data class Role(
 
     @Column(name = "role")
     var role: String
-
 )

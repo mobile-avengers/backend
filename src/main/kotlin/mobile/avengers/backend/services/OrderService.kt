@@ -22,12 +22,16 @@ class OrderService (
         return orderRepository.findAll()
     }
 
-    fun getProductsFromOrder(orderId: Long) : List<OrderProduct> {
+    fun getProductsFromOrder(orderId: Long) : List<Product> {
         val order = orderRepository.findById(orderId)
         if(order.isEmpty){
             throw OrderNotFoundException("order with id $orderId not found")
         }
-        return order.get().productsInOrder.toList()
+        val poducts = mutableListOf<Product>()
+        for(product in order.get().productsInOrder.toList()) {
+            poducts.add(product.product)
+        }
+        return poducts  // TODO добавить поле condition, возвращать объединённое значение Product и OrderProduct в формате, который принимает мобильное приложение (см. LotModel)
     }
 
     fun createOrder(userId: Long, orderRequest: CreateOrderRequest): Order {

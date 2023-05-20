@@ -14,8 +14,4 @@ class UserController(
     fun getAllUsers(): List<User> {
         return userService.getAllUsers()
     }
-
-
-
-
 }
