@@ -17,6 +17,12 @@ data class Product(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
+    @Column(name = "name")
+    var name: String,
+
+    @Column(name = "price")
+    var price: Float,
+
     @Column(name = "link")
     var link: String,
 
@@ -25,9 +31,6 @@ data class Product(
 
     @Column(name = "color")
     var color: String,
-
-    @Column(name = "description")
-    var description: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_type_id")
