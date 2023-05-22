@@ -45,7 +45,7 @@ class OrderService (
             Timestamp.valueOf(LocalDateTime.now()),
             user,
         )
-        val savedOrder: Order = orderRepository.save(newOrder)
+        var savedOrder: Order = orderRepository.save(newOrder)
 
         for (productId in orderRequest.productIds) {
             val product = productRepository.findById(productId)
@@ -61,9 +61,10 @@ class OrderService (
                 product.get(),
                 savedOrder,
             )
+            savedOrder.cost += product.get().price
             orderProductRepository.save(orderProduct)
         }
-        return savedOrder
+        return orderRepository.save(savedOrder)
     }
 
     fun changeOrderConditionById(orderId: Long, newStatus: String): Order {
