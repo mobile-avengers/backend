@@ -1,5 +1,6 @@
 package mobile.avengers.backend.controllers
 
+import io.swagger.v3.oas.annotations.Operation
 import mobile.avengers.backend.entities.Order
 import mobile.avengers.backend.entities.Product
 import mobile.avengers.backend.models.CreateOrderRequest
@@ -27,4 +28,18 @@ class OrderController (
     ): Order {
         return orderService.createOrder(userId, order)
     }
+
+    @Operation(summary = "Получение заказа по id, привилегия админа")
+    @GetMapping("/api/v1/order")
+    fun getCurrentOrderByOrderId(@RequestParam orderId: Long) : Order {
+        return orderService.getCurrentOrderById(orderId)
+    }
+
+    @Operation(summary = "Изменить состояние заказа, привилегия админа")
+    @PutMapping("/api/v1/order")
+    fun changeOrderConditionById(@RequestParam orderId: Long, @RequestParam newStatus: String) : Order {
+        return orderService.changeOrderConditionById(orderId, newStatus)
+    }
+
+
 }
