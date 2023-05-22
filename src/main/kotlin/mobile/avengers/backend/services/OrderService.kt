@@ -1,7 +1,9 @@
 package mobile.avengers.backend.services
 
 import mobile.avengers.backend.entities.*
+import mobile.avengers.backend.enums.OrderConditions
 import mobile.avengers.backend.enums.ProductConditions
+import mobile.avengers.backend.exceptions.ConditionGettingException
 import mobile.avengers.backend.exceptions.OrderNotFoundException
 import mobile.avengers.backend.exceptions.ProductNotFoundException
 import mobile.avengers.backend.models.CreateOrderRequest
@@ -9,6 +11,7 @@ import mobile.avengers.backend.repositories.*
 import org.springframework.stereotype.Service
 import java.sql.Timestamp
 import java.time.LocalDateTime
+import java.util.Optional
 
 
 @Service
@@ -62,4 +65,25 @@ class OrderService (
         }
         return savedOrder
     }
+
+    fun changeOrderConditionById(orderId: Long, newStatus: String): Order {
+        try {
+            val condition: OrderConditions = OrderConditions.valueOf(newStatus)
+            var order: Order = getCurrentOrderById(orderId)
+
+            order.condition = condition.toString()
+            return orderRepository.save(order)
+        } catch (e: IllegalArgumentException) {
+            throw ConditionGettingException("$newStatus isn't real order status")
+        }
+    }
+
+    fun getCurrentOrderById(orderId: Long) : Order {
+        val orderOpt: Optional<Order> = orderRepository.findById(orderId)
+        if (orderOpt.isEmpty) {
+            throw OrderNotFoundException("order with id $orderId not found")
+        }
+        return orderOpt.get()
+    }
+
 }
