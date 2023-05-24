@@ -30,17 +30,6 @@ create table if not exists product
         references product_type (id)
 );
 
--- КОРЗИНА
-create table if not exists cart
-(
-    id                  serial primary key,
-    user_id             int not null
-        references users (id),
-    product_id          int not null
-        references product (id),
-    price               float
-);
-
 -- ЗАКАЗЫ
 create table if not exists orders
 (

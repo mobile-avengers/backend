@@ -1,12 +1,12 @@
 package mobile.avengers.backend.enums
 
 enum class OrderConditions(val status: String) {
-    NEW("new"),
-    CANCELED("canceled"),
-    PAYED("payed"),
-    CONFIRMED("confirmed"),
-    BOUGHT_IN_SHOP("boughtInShop"), // выкуплен
-    SENT("sent"), // отправлен
-    IN_DELIVERY("inDlivery"),
-    CLIENT_RECEIVED("clientReceived"),
+    NEW("NEW"),
+    CANCELED("CANCELED"),
+    PAYED("PAYED"),
+    CONFIRMED("CONFIRMED"),
+    BOUGHT_IN_SHOP("BOUGHT_IN_SHOP"), // выкуплен
+    SENT("SENT"), // отправлен
+    IN_DELIVERY("IN_DELIVERY"),
+    CLIENT_RECEIVED("CLIENT_RECEIVED"),
 }

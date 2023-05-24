@@ -28,10 +28,10 @@ data class Product(
     var link: String,
 
     @Column(name = "size")
-    var size: String,
+    var size: Int,
 
     @Column(name = "color")
-    var color: String,
+    var color: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_type_id")
