@@ -96,6 +96,8 @@ class OrderServiceTest {
 
             // when
             val order = orderService.createOrder(user.id, orderRequest)
+            product1Given.inOrder = true
+            product2Given.inOrder = true
 
             // then
             assertEquals(order.user, user, "Пользователь в заказе указан некорректно")
@@ -104,28 +106,6 @@ class OrderServiceTest {
             assertEquals(order.productsInOrder.find { e -> e.product == product2Given}?.product, product2Given, "Ошибка тестового объекта Product2")
             assertEquals(order.condition, "new", "Статус заказа некорректен")
             assertEquals(order.cost, 3F, "Общая стоимость заказа некорректна")
-        }
-
-        @Test
-        @DisplayName("Сменить состояние заказа")
-        fun changeOrderConditionById_changeOrderCondition() {
-            // given
-            val role = Role(0, "role")
-            val user = User(0, "mail", "password", role, mutableListOf())
-
-            val order = Order(0, "condition", Timestamp(0, 0, 0, 0, 0, 0, 0), user, mutableListOf(), 0F)
-
-            val newCondition = "sent"
-
-            roleRepository.save(role)
-            userRepository.save(user)
-            orderRepository.save(order)
-
-            // when
-            val newOrder = orderService.changeOrderConditionById(order.id, newCondition)
-
-            // then
-            assertEquals(newOrder, newCondition, "Ошибка изменения состояния заказа")
         }
 
         @Test

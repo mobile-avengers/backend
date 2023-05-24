@@ -36,13 +36,6 @@ class ProductServiceTest {
     @Autowired
     lateinit var productTypeRepository: ProductTypeRepository
 
-    @BeforeAll
-    fun clearDataBase() {
-        productRepository.deleteAll()
-        productTypeRepository.deleteAll()
-        userRepository.deleteAll()
-        roleRepository.deleteAll()
-    }
     @Nested
     @DisplayName("Позитивные сценарии")
     inner class ProductServiceTest_positive {
@@ -91,7 +84,7 @@ class ProductServiceTest {
 
             // then
             assertEquals(productRepository.findAllByUserAndInOrder(user, false).size, 1, "Получено некрректное количество Product")
-            assertEquals(productRepository.findAllByUserAndInOrder(user, false)[0], savedProduct, "Product сохранился некорректно")
+            assertEquals(productRepository.findAllByUserAndInOrder(user, false)[0], savedProduct.body, "Product сохранился некорректно")
         }
 
         @Test
