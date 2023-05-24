@@ -2,8 +2,7 @@ package mobile.avengers.backend.services
 
 import mobile.avengers.backend.entities.*
 import mobile.avengers.backend.enums.OrderConditions
-import mobile.avengers.backend.enums.ProductConditions
-import mobile.avengers.backend.exceptions.ConditionGettingException
+import mobile.avengers.backend.exceptions.NoSuchConditionException
 import mobile.avengers.backend.exceptions.OrderNotFoundException
 import mobile.avengers.backend.exceptions.ProductNotFoundException
 import mobile.avengers.backend.models.CreateOrderRequest
@@ -41,7 +40,7 @@ class OrderService (
         val user: User = userRepository.getReferenceById(userId)
         val newOrder = Order(
             -1,
-            ProductConditions.NEW.status,
+            OrderConditions.NEW.status,
             Timestamp.valueOf(LocalDateTime.now()),
             user,
         )
@@ -57,7 +56,7 @@ class OrderService (
 
             val orderProduct = OrderProduct(
                 -1,
-                ProductConditions.NEW.status,
+                OrderConditions.NEW.status,
                 product.get(),
                 savedOrder,
             )
@@ -75,7 +74,7 @@ class OrderService (
             order.condition = condition.toString()
             return orderRepository.save(order)
         } catch (e: IllegalArgumentException) {
-            throw ConditionGettingException("$newStatus isn't real order status")
+            throw NoSuchConditionException("$newStatus isn't order status")
         }
     }
 

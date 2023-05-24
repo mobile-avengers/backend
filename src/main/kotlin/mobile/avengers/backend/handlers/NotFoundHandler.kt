@@ -1,7 +1,7 @@
 package mobile.avengers.backend.handlers
 
 import jakarta.persistence.EntityNotFoundException
-import mobile.avengers.backend.exceptions.ConditionGettingException
+import mobile.avengers.backend.exceptions.NoSuchConditionException
 import mobile.avengers.backend.exceptions.OrderNotFoundException
 import mobile.avengers.backend.exceptions.ProductNotFoundException
 import org.springframework.http.ResponseEntity
@@ -14,9 +14,15 @@ class NotFoundHandler {
         EntityNotFoundException::class,
         ProductNotFoundException::class,
         OrderNotFoundException::class,
-        ConditionGettingException::class
     )
-    fun handleException(): ResponseEntity.HeadersBuilder<*> {
+    fun handle404Exception(): ResponseEntity.HeadersBuilder<*> {
         return ResponseEntity.notFound()
+    }
+
+    @ExceptionHandler(
+        NoSuchConditionException::class,
+    )
+    fun handle400Exception(): ResponseEntity.HeadersBuilder<*> {
+        return ResponseEntity.badRequest()
     }
 }
