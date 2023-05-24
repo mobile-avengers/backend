@@ -14,34 +14,34 @@ import lombok.Setter
 @Getter
 @Setter
 data class Product(
-        @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long = 0,
+    val id: Long = 0,
 
-        @Column(name = "name")
-        var name: String,
+    @Column(name = "name")
+    var name: String,
 
-        @Column(name = "price")
-        var price: Float,
+    @Column(name = "price")
+    var price: Float,
 
-        @Column(name = "link")
-        var link: String,
+    @Column(name = "link")
+    var link: String,
 
-        @Column(name = "size")
-        var size: String,
+    @Column(name = "size")
+    var size: String,
 
-        @Column(name = "color")
-        var color: String,
+    @Column(name = "color")
+    var color: String,
 
-        @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_type_id")
-        var productType: ProductType,
+    var productType: ProductType,
 
-        @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-        var user: User?,
+    var user: User?,
 
-        @JsonIgnore
+    @JsonIgnore
     @Column(name = "in_order")
-        var inOrder: Boolean = false
+    var inOrder: Boolean = false
 )
