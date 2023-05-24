@@ -39,7 +39,7 @@ data class Product(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    var user: User,
+    var user: User?,
 
     @JsonIgnore
     @Column(name = "in_order")

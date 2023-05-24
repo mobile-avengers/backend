@@ -34,4 +34,29 @@ data class Order(
     var productsInOrder: MutableList<OrderProduct> = mutableListOf(),
 
     var cost: Float = 0f  // TODO подсчитывать как-то и возвращать во view
-)
+
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Order
+
+        if (id != other.id) return false
+        if (condition != other.condition) return false
+        if (createDate != other.createDate) return false
+        if (user != other.user) return false
+        if (cost != other.cost) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + condition.hashCode()
+        result = 31 * result + createDate.hashCode()
+        result = 31 * result + user.hashCode()
+        result = 31 * result + cost.hashCode()
+        return result
+    }
+}
